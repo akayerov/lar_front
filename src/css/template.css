@@ -1,0 +1,73 @@
+/*
+CSS Templates
+*/
+/* 
+    Created on : 23.09.2019, 16:06:29
+    Author     : Ekaterina
+*/
+
+@font-face {
+    font-family:'Bebas Neue';
+    src: url("../fonts/BebasNeueRegular.eot") 
+        format("embedded-opentype"),url("../fonts/BebasNeueRegular.woff2") 
+        format("woff2"),url("../fonts/BebasNeueRegular.woff") 
+        format("woff"),url("../fonts/BebasNeueRegular.ttf") 
+        format("truetype"),url("../fonts/BebasNeueRegular.svg#BebasNeueRegular") 
+        format("svg");
+    font-weight: 400;
+    font-style: normal;
+    font-variant: normal
+}
+@page{
+    margin: 0;
+    padding: 0;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+body, html{
+    padding: 0;
+}
+#container {
+    position: relative;
+}
+#background-a6 {
+    top: 0;
+    left: 0;
+    width: 680px;
+    height: 489px;
+}
+#background-a4 {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 28cm;
+}
+.item {
+    position: absolute;
+    display: inline-block;
+    transform-origin: top left;
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+}
+
+/* Certificate */
+#container-certificate {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -99999;
+}
+#background-certificate {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 28cm;
+    z-index: -99999;
+}
+/* END Certificate */

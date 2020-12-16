@@ -1,0 +1,669 @@
+body, html {
+    height: 100%;
+}
+
+#root {
+    min-height: 100%;
+}
+
+/* Helpers */
+.clickable {
+    cursor: pointer;
+}
+
+.highlighted-occurence {
+    background: #feca0f;
+    box-shadow: 0 0 3px 0 #000;
+}
+
+.half-opaque {
+    opacity: 0.5;
+}
+
+/* Overwrites */
+
+.content.content-924, .content.content-100 {
+    position: absolute;
+    margin-bottom: 75px;
+    transition: opacity .3s;
+}
+
+.content.content-100 {
+    width: 98.5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav li a.active {
+    color: #ffc50f;
+}
+
+.form .react-datepicker__input-container {
+    width: 100%;
+}
+
+.ticket-table .header-table .column span {
+    cursor: pointer;
+}
+
+.cart-ico {
+    cursor: default !important;
+}
+
+.cart .blue-row {
+    /*overflow: hidden;*/
+    height: 56px;
+    max-height: 56px;
+    transition: all .2s;
+}
+
+.aside-277 .cart .name-price .name {
+    height: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ticket-table .row.header-table {
+    z-index: 1;
+}
+
+.ticket-table .row {
+    position: relative;
+    display: block;
+    max-height: 71px;
+    background: #fff;
+    /*transition: all 0.2s;*/
+}
+
+.ticket-table.booking-table .column.name {
+    width: 170px;
+}
+
+.ticket-table.booking-table .column.date2 {
+    width: 190px;
+}
+
+.ticket-table.booking-table .column.time {
+    width: 150px;
+}
+
+.ticket-table.booking-table .column.weight {
+    width: 160px;
+}
+
+.ticket-table .column.radiocell {
+    min-width: 60px;
+}
+
+.ticket-table.booking-table .row {
+    transition: opacity .2s;
+    background-color: white;
+}
+
+.ticket-table.booking-table .row:nth-child(2n) {
+    background-color: #f4f4f4;
+}
+
+.ticket-table .selection select {
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    -ms-appearance: none;
+    appearance: none !important;
+    -webkit-appearance: none;
+    padding: 0px 2px 0 25px;
+    background: url(../img/ico-bottom-blue.svg) no-repeat 0 5px;
+    border: none;
+    cursor: pointer;
+    background-size: 15px 10px;
+    text-transform: uppercase;
+    transition: .3s;
+    font: 700 18px/20px 'Bebas Neue';
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.ticket-table .selection {
+    background-color: inherit;
+}
+
+.time-select {
+    z-index: 100;
+    position: absolute;
+    top: 22px;
+    background-color: inherit !important;
+}
+
+.ticket-table.booking-table .row .column.weight select {
+    background: url(../img/weight.svg) no-repeat left center;
+    padding-left: 30px;
+}
+
+.cart-content .cc-row.yellow {
+    border-bottom: 2px solid #ffc50f;
+}
+
+.cart-content .cc-row {
+    transition: background .2s;
+}
+
+.cart-content .cc-row.lightblue {
+    overflow: hidden;
+    height: 75px;
+    padding-left: 10px;
+}
+
+.modal-content .white-content {
+    min-height: 1px;
+    height: auto;
+}
+
+.white-content input {
+    transition: .2s;
+}
+
+.white-content input.used ~ label.floating,
+.white-content input ~ label.used.floating,
+.white-content input:focus ~ label.floating {
+    position: relative;
+    top: -68px;
+    color: #162859;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.white-content label.floating {
+    position: relative;
+    display: block;
+    /*color: #162859;*/
+    color: #999;
+    padding: 0 8px 0 18px;
+    font: 900 18px/32px SFUIDisplay;
+    top: -36px;
+    cursor: text;
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: -30px;
+    transition: .2s;
+}
+
+.ticket-table .column .act-menu {
+    left: -93px;
+    width: 155px;
+}
+
+.custom-input {
+    display: inline-block !important;
+    height: 31px;
+    background: #d3d3d3;
+    -webkit-box-shadow: inset 0 3px 6px 1px #aaa;
+    box-shadow: inset 0 3px 6px 1px #aaa;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    border: none;
+    color: #4e4e4e;
+    padding: 0 18px;
+    font: 16px/31px SFUIDisplay;
+}
+
+
+.tooltip-helper {
+    position: relative;
+    display: inline-block;
+    user-select: none;
+}
+
+.tooltip-helper .tooltip-title {
+    color: #ffc50d;
+    cursor: default;
+    font-weight: bold;
+}
+
+.tooltip-helper .tooltip-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(120%);
+    transition: .2s;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.tooltip-helper:hover .tooltip-content {
+    opacity: 1;
+    transform: translateY(100%);
+}
+
+
+/* Animation classes */
+
+.fade {
+    /* opacity: 1; */
+    transition: .2s;
+    /*transition-delay: ;*/
+}
+
+.fade-enter, .fade-leave.fade-leave-active {
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+.fade-enter.fade-enter-active, .fade.modal-leave {
+    opacity: 1;
+    transition: opacity .2s;
+}
+
+
+.cart-enter, .cart-leave.cart-leave-active {
+    opacity: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    transition: all .2s;
+}
+
+.cart-enter.cart-enter-active, .cart.modal-leave {
+    opacity: 1 !important;
+    max-height: 56px !important;
+    overflow: hidden !important;
+    transition: all .2s;
+}
+
+.scale-in {
+    transition: .2s;
+}
+
+.scale-in-enter, .scale-in-leave.scale-in-leave-active {
+    opacity: 0;
+    transform: scale(0.85);
+}
+
+.scale-in-enter.scale-in-enter-active, .scale-in-leave {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.initial-loader.initial-enter, .initial-loader.initial-appear, .initial-loader.initial-leave.initial-leave-active {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+}
+
+.initial-loader.initial-enter.initial-enter-active, .initial-loader.initial-appear.initial-appear-active, .initial-loader.initial-leave {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.initial-content {
+    /*transition-delay: .5s;*/
+}
+
+.initial-content.initial-enter, .initial-content.initial-leave.initial-leave-active {
+    opacity: 0;
+    transform: scale(1.15);
+}
+
+.initial-content.initial-enter.initial-enter-active, .initial-content.initial-leave {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+.fast {
+    transition-duration: .2s !important;
+}
+
+.medium-speed {
+    transition-duration: .45s !important;
+}
+
+.slow {
+    transition-duration: .6s !important;
+}
+
+@keyframes pulseDate {
+
+    0% {
+        color: red;
+    }
+
+    50% {
+        color: #091835;
+    }
+
+    100% {
+        color: red;
+    }
+
+}
+
+
+
+/* Act Menu */
+
+.act-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    top: calc(100% + 5px) !important;
+    left: -135px !important;
+    display: block !important;
+    transition: .2s !important;
+    box-shadow: 0 2px 6px 0 #a2a2a2 !important;
+    -webkit-transform-origin: top right;
+    -moz-transform-origin: top right;
+    -ms-transform-origin: top right;
+    -o-transform-origin: top right;
+    transform-origin: top right;
+}
+
+.act-menu li {
+    cursor: pointer;
+}
+
+.act-menu-enter, .act-menu-leave.act-menu-leave-active {
+    visibility: hidden;
+    opacity: 0 !important;
+    transform: scale(0.01);
+}
+
+.act-menu-enter.act-menu-enter-active, .act-menu-leave {
+    visibility: visible;
+    opacity: 1 !important;
+    transform: scale(1);
+}
+
+.nav {
+    transition: all 0.2s ease-out;
+}
+
+/* Navigation bar */
+
+.nav-enter, .nav-leave.nav-leave-active {
+    visibility: hidden;
+    opacity: 0.01;
+    transform: translateY(-30px);
+}
+
+.nav-enter.nav-enter-active, .nav-leave {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Modals */
+
+.modal-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(21, 32, 80, 0.47);
+    z-index: 10000;
+    transition: all 0.15s ease-out;
+}
+
+.modal-container {
+    position: fixed;
+    top: 20%;
+    left: calc(50% - 320px);
+    z-index: 10001;
+    background: #fff;
+    padding: 0;
+    text-align: left;
+    width: 640px;
+    max-width: 640px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 153px 0 #3b4050;
+    transition: all 0.2s ease-out;
+}
+
+.modal-container h3 {
+    background: #162659;
+    background: -webkit-linear-gradient(top, #162659 0%, #152153 100%);
+    background: -webkit-gradient(linear, left top, left bottom, from(#162659), to(#152153));
+    background: linear-gradient(to bottom, #162659 0%, #152153 100%);
+    box-shadow: 0 -2px 30px 0 #212948;
+    font: 700 32px/52px 'Bebas Neue';
+    color: #fff;
+    margin: 0;
+    padding: 0 21px;
+}
+
+.modal-container .dialog-intro {
+    background: url(../img/mramor-654x274.jpg) no-repeat;
+    background-size: cover;
+    padding: 15px 0 18px;
+    text-align: center;
+}
+
+.modal-container .modal-content {
+    padding: 18px 0 2px;
+}
+
+.modal-container .bottom-buttons {
+    padding: 44px 0;
+    text-align: center;
+}
+
+.modal-container.modal-enter, .modal-container.modal-leave.modal-leave-active {
+    opacity: 0;
+    -webkit-transform: translateY(-20px) perspective(600px) rotateX(7deg) scale(0.9);
+    -ms-transform: translateY(-20px) perspective(600px) rotateX(7deg) scale(0.9);
+    transform: translateY(-20px) perspective(600px) rotateX(7deg) scale(0.9);
+}
+
+.modal-container.modal-enter.modal-enter-active, .modal-container.modal-leave {
+    opacity: 1;
+    -webkit-transform: translateY(0) perspective(600px) rotateX(0) scale(1);
+    -ms-transform: translateY(0) perspective(600px) rotateX(0) scale(1);
+    transform: translateY(0) perspective(600px) rotateX(0) scale(1);
+}
+
+.modal-overlay.modal-enter, .modal-overlay.modal-leave.modal-leave-active {
+    opacity: 0;
+}
+
+.modal-overlay.modal-enter.modal-enter-active, .modal-overlay.modal-leave {
+    opacity: 1;
+}
+
+
+/* Date selection */
+
+.main-title .selection.date-selection span {
+    padding-left: 25px;
+}
+
+.date-selection .react-datepicker__close-icon::after {
+    background: none;
+    font-size: 16px;
+    color: #fff;
+    right: -20px;
+    line-height: 10px;
+    -webkit-transition: color .3s;
+    -moz-transition: color .3s;
+    -ms-transition: color .3s;
+    -o-transition: color .3s;
+    transition: color .3s;
+}
+
+.date-selection .react-datepicker__close-icon:hover::after {
+    color: #ffc50f;
+}
+
+.ticket-table .react-datepicker__close-icon::after {
+    background: none;
+    right: -20px;
+    color: #091835;
+    font-size: 30px;
+    line-height: 13px;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__day--keyboard-selected {
+    background-color: #172a73 !important;
+}
+
+.react-datepicker__day--selected:hover,
+.react-datepicker__day--in-selecting-range:hover,
+.react-datepicker__day--in-range:hover,
+.react-datepicker__day--keyboard-selected:hover {
+    background-color: #152356 !important;
+}
+
+/* Autocomplete List */
+.autocomplete {
+    position: absolute;
+    z-index: 9999;
+    background-color: #1b244b;
+    list-style: none;
+    width: 325px;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    border-radius: 6%;
+}
+.autocomplete li {
+    padding: 5px 0 5px 20px;
+    cursor: pointer;
+}
+.autocomplete li:not(:first-child) {
+    border-top: 1px solid lightgray;
+}
+.autocomplete li:first-child {
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+}
+.autocomplete li:last-child {
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+
+/* Loaders */
+
+.initial-loader {
+    position: absolute;
+    display: block;
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-image: url('../img/initial-loader.svg');
+}
+
+/* 2020-06-29 из admin */
+.content.content-100 {
+    position: absolute;
+    width: 100%;
+    transition: opacity .3s;
+}
+
+.content.content-100.fade-appear {
+    transition: opacity .75s;
+}
+
+
+.content.content-100 {
+    overflow: hidden;
+}
+
+/** Plus form **/
+
+.circle-buttons {
+    perspective: 500px;
+}
+
+.ticket-table .header-table .column span {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ticket-table .row.header-table {
+    background: #efeff5;
+    z-index: 1;
+    cursor: default;
+}
+
+.ticket-table {
+    min-height: 65vh;
+}
+
+.ticket-table.no-min-height, .ticket-table.directory-table {
+    min-height: 0;
+}
+
+.ticket-table .rows-container {
+    /*max-height: 73vh;*/
+    position: absolute;
+    width: 100%;
+}
+
+.ticket-table .row {
+    position: relative;
+    display: block;
+    /*max-height: 67px;*/
+    background: #fff;
+    cursor: pointer;
+    /*transition: all 0.2s;*/
+}
+
+.ticket-table .column {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.ticket-table .column.small {
+    min-width: 60px;
+    max-width: 60px;
+}
+
+.ticket-table .column.smallPlus {
+    min-width: 80px;
+    max-width: 80px;
+}
+
+.ticket-table .column.medium {
+    min-width: 110px;
+    max-width: 110px;
+}
+
+.ticket-table .column.mediumPlus {
+    min-width: 130px;
+    max-width: 130px;
+}
+.ticket-table .column.large {
+    min-width: 150px;
+    max-width: 150px;
+}
+
+.ticket-table .column.largePlus {
+    min-width: 170px;
+    max-width: 170px;
+}
+
+.ticket-table .column.xl {
+    min-width: 200px;
+    max-width: 200px;
+}
+
+.ticket-table .column.xxl {
+    min-width: 284px;
+    max-width: 284px;
+    white-space: nowrap;
+}

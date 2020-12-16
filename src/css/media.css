@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/*@import url('_vars.sass')
+@import "vars"*/
+/* <=1199 */
+/* <=1199 end */
+/* <=991 */
+/* <=991 end */
+/* <=767 */
+/* <=767 end */
+/* <=479 */
+/* <=479 end */
+@media only screen and (-Webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3 / 2), only screen and (min-device-pixel-ratio: 1.5) {
+  /*.retina {
+    background-image: url(example@2x.png);
+  }*/ }
+
+/* Портретная ориентация шаблона */
+@media screen and (orientation: portrait) {
+  .white-content {
+    height: 94vh; } }
+
+/*==========  Mobile First Method  ==========*/
+/* Custom, iPhone Retina */
+/* Extra Small Devices, Phones */
+/* Small Devices, Tablets */
+/* Medium Devices, Desktops */
+/* Large Devices, Wide Screens */
+/**/
