@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {loadState} from './localStorage';
 
 const prefix = '/api/';
 const url = resource => prefix + resource;

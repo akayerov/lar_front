@@ -1,11 +1,6 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import ContentTitle from '../layout/ContentTitle';
-import {MediumHourGlass} from '../elements/Loaders';
-import debounce from 'lodash/debounce';
-
-import { Button } from '@material-ui/core';
+import * as React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
+
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'firstName', headerName: 'First name', width: 130 },
@@ -37,39 +32,12 @@ const rows = [
   { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
   { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-]
+];
 
-
-class EmptyComponent extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    
-
-    componentDidMount() {
-    }
-    render() {
-        return (
-            <div className="content content-924">
-                <ContentTitle className="booking-title">
-                    Grid Table Material UI
-                </ContentTitle>
-                <div style={{ height : '70vh'}}>
-                <div style={{ height : '90%'}}>
-                    <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
-                </div>
-                <Button color="primary">button 1</Button>
-                <Button variant="contained" color="primary">button 2</Button>
-                </div>
-            </div>
-        );
-    }
+export default function DataTable() {
+  return (
+    <div style={{ height: '90%', width: '100%' }}>
+      <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
+    </div>
+  );
 }
-
-export default connect(
-    state => ({
-    }),
-    dispatch => ({
-    })
-)(EmptyComponent);

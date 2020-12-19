@@ -44,7 +44,12 @@ import ResetPasswordInPage from './pages/ResetPassword';
 import WithoutReg from './pages/WithoutReg';
 import Reg from './pages/Reg/Form';
 import Profile from './pages/Profile';
+//
 import EmptyComponent from './pages/EmptyComponent';
+import DataGrid from './pages/GridPage';
+import TreePageC from './pages/TreePageC';
+import TreePageM from './pages/TreePageM';
+import TreePageCtrl from './pages/TreePageCtrl';
 
 // eslint-disable-next-line
 import { getPublic, getPrivate, getClients, getUsers, getLogout1 } from './api'
@@ -77,10 +82,11 @@ class App extends React.PureComponent {
     return (
       <BrowserRouter>
           <div>
-            <Header />
 
+            <Header />
             <NavigationBar />
             <MainContent>
+              <div>
               <Route render={({ location }) => {
                 //                                      const key = location.pathname.substr(prefix.length).split('/').filter(Boolean).slice(0, 1).join('/');
                 const key = location.pathname;
@@ -100,6 +106,10 @@ class App extends React.PureComponent {
                         <Route exact path={routes.index} key='7' component={EmptyComponent} />
 
                         <Route exact path={routes.mainContent} key='8' component={EmptyComponent} />
+                        <Route exact path={routes.client} key='101' component={DataGrid} />
+                        <Route exact path={routes.treePageCustom} key='101' component={TreePageC} />
+                        <Route exact path={routes.treePageMulti} key='102' component={TreePageM} />
+                        <Route exact path={routes.treePageCtrl} key='103' component={TreePageCtrl} />
 
 
                         <Route exact path={routes.testAPI} key='10' component={TestAPI} />
@@ -107,6 +117,7 @@ class App extends React.PureComponent {
                     </Switch>
                 )
               }} />
+              </div>
             </MainContent>
           </div>
       </BrowserRouter>

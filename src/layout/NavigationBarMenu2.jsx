@@ -48,8 +48,11 @@ class NavigationBarMenu2 extends React.Component {
                                         <li><Link to="/client">Клиент</Link></li>
                                         <li><Link to="/template">Шаблон</Link></li>
                                         <li><a href="#">Водитель</a></li>
-                                        <li><a href="#">Отчеты</a>
+                                        <li><a href="#">Тестовые</a>
                                             <ul>
+                                                <li><Link to="/treepage_c">Деревья Custom</Link></li>
+                                                <li><Link to="/treepage_m">Деревья Multi</Link></li>
+                                                <li><Link to="/treepage_ctrl">Деревья контролируемые</Link></li>
                                                 <li><a href="#">Заказы</a></li>
                                                 <li><a href="#">Задания</a></li>
                                                 <li><a href="#">Перевозки</a></li>

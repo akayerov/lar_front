@@ -17,6 +17,11 @@ export const routes = {
     testAPI: prefix + '/testapi',
     client: prefix + '/client',
     template: prefix + '/template',
+// доп тестовые компоненты
+    treePageCustom: prefix + '/treepage_c',
+    treePageMulti:  prefix + '/treepage_m',
+    treePageCtrl:   prefix + '/treepage_ctrl'
+
 };
 
 export const cartRoutes = [routes.activities, routes.me];

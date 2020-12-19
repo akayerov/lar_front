@@ -2,7 +2,11 @@ import * as actionTypes from '../actionTypes';
 import throttle from 'lodash/throttle';
 import moment from 'moment';
 import axios from 'axios';
-import  { getLogout1 } from '../../api'
+import  { getLogout1 } from '../../api';
+// 2020-12-17 сохранение в localstorage
+import { saveState } from '../../localStorage';
+import { store } from "../../index";
+
 const url = '/api/';
 
 const encodeParams = (params = {}) => {
@@ -63,8 +67,8 @@ export const setToken = token => ({
     token
 });
 
-// User actions
-// c использованием axios и его прерывателей
+// User actions изменен по сравнение со Skypark - там fetch используется
+// c использованием axios и его прерывателей, 401 ошибка авторизаации там обрабатывается и сюда не доходит
 export const logIn = (email, password) => dispatch => {
     dispatch(setPending('user', true));
     axios.post(
@@ -84,10 +88,14 @@ export const logIn = (email, password) => dispatch => {
                     type: actionTypes.USER_UPDATE,
                     data
                 });
+                saveState( store.getState());  // сохранение state в localStorage
             } else {
                 switch (data.error.code) {
                     case 3:
                         window.toast.error('Неверные логин и пароль');
+                        break;
+                    default:    
+                        window.toast.error('Прочие ошибки авторизации');
                 }
             }
         })
@@ -112,6 +120,8 @@ export const restorePassword = email => dispatch => {
                     case 4:
                         window.toast.error('Пользователь с этим e-mail не найден');
                         break;
+                    default:    
+                        window.toast.error('Прочие ошибки');
                 }
             }
         })
@@ -153,6 +163,8 @@ export const regUser = data => dispatch => {
                     case 9:
                         window.toast.error('Неверные логин и пароль');
                         break;
+                    default:    
+                        window.toast.error('Прочие ошибки');
                 }
             }
         }).catch(error => console.log('error', error));
@@ -176,6 +188,8 @@ export const updateUser = data => (dispatch, getState) => {
                     case 3:
                         window.toast.error('Неверные пользовательские данные');
                         break;
+                    default:    
+                        window.toast.error('Прочие ошибки');
                 }
             }
         }).catch(error => console.log('error', error));
@@ -191,10 +205,6 @@ export const logOut = () => (dispatch, getState) => {
         dispatch({
             type: actionTypes.TOKEN_SET,
             token: null,
-        });
-        dispatch({
-            type: actionTypes.setBasketItems,
-            items: [],
         });
         document.cookie = '';
     })
@@ -212,12 +222,9 @@ export const logout1 = (token) => (dispatch, getState) => {
             type: actionTypes.TOKEN_SET,
             token: null,
         });
-        dispatch({
-            type: actionTypes.setBasketItems,
-            items: [],
-        });
         document.cookie = '';
-    })
+        saveState( store.getState());  // сохранение state в localStorage
+    }).catch(error => console.log('Ошибка при выходе', error));
 };
 
 export const fetchUserData = (init = false) => (dispatch, getState) => {
@@ -433,7 +440,9 @@ export const checkoutBasket = (reservationData, history) => (dispatch, getState)
                         case 7:
                             window.toast.error('Не удалось сохранить информацию о бронировании');
                             break;
-                    }
+                        default:    
+                            window.toast.error('Прочие ошибки');
+                        }
                 }
             })
             .catch(error => console.log('error', error));
@@ -463,7 +472,9 @@ export const checkoutBasket = (reservationData, history) => (dispatch, getState)
                         case 9:
                             window.toast.error('Не удалось доставить письмо на указанный e-mail');
                             break;
-                    }
+                        default:    
+                            window.toast.error('Прочие ошибки');
+                        }
                 }
             })
             .catch(error => console.log('error', error));
@@ -565,6 +576,8 @@ export const fetchReservedDates = (activityId, from, to) => (dispatch, getState)
                     case 2:
                         window.toast.error('Некорректные даты');
                         break;
+                    default:    
+                        window.toast.error('Прочие ошибки');
                 }
             }
         });
