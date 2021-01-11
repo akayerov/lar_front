@@ -30,7 +30,7 @@ import throttle from 'lodash/throttle';
 import thunk from 'redux-thunk';
 import AppReducer from './redux/reducers';
 
-import { loadState, saveState } from './localStorage';
+import { loadState, clearState } from './localStorage';
 import App from './App';
 import ModalManager from './ModalManager';
 
@@ -56,7 +56,7 @@ toastr.options = {
 }
  window.toast = toastr;
  
-let store = createStore(AppReducer, loadState(), composeWithDevTools(applyMiddleware(thunk)));
+export let store = createStore(AppReducer, loadState(), composeWithDevTools(applyMiddleware(thunk)));
 
 
 console.log('store=', store);
@@ -79,10 +79,20 @@ axios.interceptors.response.use(response => {
 }, error => {
 //  console.log('ERROR response interseptor');
   if (error.response.status === 401) {
-      window.toast.error('Ошибка авторизации');
-      setTimeout(() => {
-        window.location.pathname = '/auth';
-      }, 2000);
+      console.log('response =', error.response);
+      if( error.response.config.url == '/api/auth/logout')  {
+         console.log('clear state');
+         clearState();
+        setTimeout(() => {
+            window.location.pathname = '/auth';
+          }, 1000);
+      }
+      else {   
+        window.toast.error('Ошибка авторизации');
+        setTimeout(() => {
+            window.location.pathname = '/auth';
+          }, 1000);
+      }  
   }
   return Promise.reject(error)
 })

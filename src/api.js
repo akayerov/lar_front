@@ -1,9 +1,7 @@
 import axios from 'axios';
-import {loadState} from './localStorage';
 
 const prefix = '/api/';
 const url = resource => prefix + resource;
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Тестовые для тестирования авторизации
 // публичный, открытый без авторизации
@@ -48,9 +46,17 @@ export const getLogout1 = (token = '') => axios.post(
     return response.data;
 });
 
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+// Тестовый запрос
+export const getTestHello = () => axios.get(url('hello'), {
+    params: {},
+}).then(response => {
+    return response.data;
+});
+
+
+
+
 
 // приватный, открытый только с авторизацией
 export const getUsers = () => axios.get(url('user'), {

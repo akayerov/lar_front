@@ -15,8 +15,18 @@ export const routes = {
 
     mainContent: prefix + '/main',
     testAPI: prefix + '/testapi',
-    client: prefix + '/client',
+    clients: prefix + '/clients',
     template: prefix + '/template',
+
+//   клиенты laravel
+    clients: prefix + '/clients',
+
+
+    // доп тестовые компоненты
+    treePageCustom: prefix + '/treepage_c',
+    treePageMulti:  prefix + '/treepage_m',
+    treePageCtrl:   prefix + '/treepage_ctrl'
+
 };
 
 export const cartRoutes = [routes.activities, routes.me];
