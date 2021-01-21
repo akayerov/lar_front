@@ -46,6 +46,28 @@ export const getLogout1 = (token = '') => axios.post(
     return response.data;
 });
 
+// заголовок авторизации вынесен в прерыватель interceptor axios
+export const getMe = (token = '') => axios.post(
+    url('auth/me'),
+    {   // data
+    }
+).then(response => {
+    return response.data;
+});
+
+
+// заголовок авторизации вынесен в прерыватель interceptor axios
+export const setNewPassword = ( email, password ) => axios.post(
+    url('password/reset'),
+    {   // data
+        email, password
+    }
+).then(response => {
+    return response.data;
+});
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // Тестовый запрос
 export const getTestHello = () => axios.get(url('hello'), {
@@ -162,6 +184,7 @@ export const getClients = () => axios.get(url('client'), {
 }).then(response => {
     return response.data;
 });
+
 export const addClient = (client) => axios.post(url('client'), {
     client,
 }).then(response => {

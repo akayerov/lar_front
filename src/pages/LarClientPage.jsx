@@ -24,13 +24,31 @@ class GridPage extends React.Component {
 
     }
 
-    loadClients() {
+    async loadClients() {
         console.log('load Laravel clients');
         const dateStart = new Date();
+/*
         getClients().then((data=> {
             console.log('getclients=', data, ((new Date())-dateStart) / 1000);
             this.setState({clients: data});
         }))
+        .catch(error => {
+            console.log('LarClientPage Error load clients');
+            console.log(error.response);
+            this.setState({ clients: [] });
+        })
+*/        
+        try {
+            const data = await getClients();
+            console.log('getclients=', data, ((new Date()) - dateStart) / 1000);
+            this.setState({ clients: data });
+            
+        } catch (error) {
+            
+            console.log('LarClientPage Error load clients');
+            console.log(error.response);
+            this.setState({ clients: [] });
+        }
     }
     getTestHello() {
         console.log('load test request');
@@ -48,7 +66,7 @@ class GridPage extends React.Component {
         return (
             <div className="content content-924">
                 <ContentTitle className="booking-title">
-                    Grid Table Material UI 2
+                    Grid Table Material UI 2 Лар
                 </ContentTitle>
                 <div style={{ height : '70vh'}}>
                   <DataGrid rows={this.state.clients} columns={columns} pageSize={5} checkboxSelection />

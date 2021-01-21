@@ -40,10 +40,10 @@ const validators = {
         isValid: p => p && p.length > 0,
         error: 'Не указана Фамилия',
     },
-    birth_date: {
-        isValid: d => moment.isMoment(d) && d.isValid() && d.isBefore(moment()),
-        error: 'Некорректная дата рождения',
-    },
+//    birth_date: {
+//        isValid: d => moment.isMoment(d) && d.isValid() && d.isBefore(moment()),
+//        error: 'Некорректная дата рождения',
+//    },
     phone: {
         isValid: p => p && p.length > 0,
         error: 'Не указан Телефон',
@@ -70,7 +70,8 @@ class Form extends React.Component {
             middle_name: '',
             country: '',
             city: '',
-            birth_date: null,
+//            birth_date: null,
+            birth_date: '',
             phone: '',
             is_admin: false,
 
@@ -141,6 +142,8 @@ class Form extends React.Component {
             return;
         }
 */
+      
+        this.state.birth_date = moment(this.state.birth_date);
         this.props.submit(this.state);
         if (this.props.history) this.props.history.goBack();
     }
@@ -224,9 +227,19 @@ class Form extends React.Component {
                             </div>
 
                             <div className="rowmy-date-fix">
+{/*
                                 <DatePicker customInput={<DateInput />} selected={this.state.birth_date}
                                             onChange={date => this.setState({birth_date: date})} showYearDropdown
                                             showMonthDropdown dropdownMode="select" maxDate={moment()} />
+*/}                                             
+                                <GrayInput type="date" placeholder="Дата рожденияя" required value={this.state.birth_date}
+
+                                onChange={e => {  
+                                                     e.persist();
+                                                     console.log('date input=', e);
+                                                     this.setState({ birth_date: e.target.value })
+                                
+                                                  }} name="dateb" />
                             </div>
 
                             <GrayInput type="text" placeholder="Телефон" inputComponent={PhoneInput} required

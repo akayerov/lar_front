@@ -2,7 +2,7 @@ import * as actionTypes from '../actionTypes';
 import throttle from 'lodash/throttle';
 import moment from 'moment';
 import axios from 'axios';
-import  { getLogout1 } from '../../api';
+import { getLogout1, getClients } from '../../api';
 // 2020-12-17 сохранение в localstorage
 import { saveState } from '../../localStorage';
 import { store } from "../../index";
@@ -105,13 +105,14 @@ export const logIn = (email, password) => dispatch => {
 
 export const restorePassword = email => dispatch => {
     dispatch(setPending('user', true));
-
-    fetch(url + 'auth/restore', params({email, }))
+// 2020-01-19
+//    fetch(url + 'auth/restore', params({email, }))
+    fetch(urlWithParams(url + 'auth/resetpassword', { email }))
         .then(r => r.json())
         .then(data => {
             dispatch(setPending('user', false));
             if (!data.error) {
-                window.toast.success('На почту было отправлено письмо с Вашим новым паролем');
+                window.toast.success('На почту было отправлено письмо с Вашим c ссылкой на восттановление');
             } else {
                 switch (data.error.code) {
                     case 1:
@@ -128,10 +129,12 @@ export const restorePassword = email => dispatch => {
         .catch(error => console.log('error', error));
 };
 
+
+
 export const regUser = data => dispatch => {
     dispatch(setPending('user', true));
 
-    fetch(url + 'auth/reg', params(data))
+    fetch(url + 'auth/registration', params(data))
         .then(r => r.json())
         .then(data => {
             dispatch(setPending('user', false));
@@ -629,14 +632,18 @@ export const closeModal = () => ({
 
 // Activity actions
 export const fetchClients = ( parameter ) => dispatch => {
+    console.log('fetchClients'); 
+
     dispatch(setPending('clients', true));
 
 //    fetch(url + 'client', params(parameter, 'GET'))
-    fetch(urlWithParams(url + 'client', parameter ))
-        .then(r => r.json())
+//    fetch(urlWithParams(url + 'client', parameter))
+//        .then(r => r.json())
+    getClients()
         .then(data => {
             dispatch(setPending('clients', false));
             if (!data.error) {
+                console.log('fetchClients dispatch actionTypes.CLIENT_UPDATE'); 
                 dispatch({
                     type: actionTypes.CLIENT_UPDATE,
                     data

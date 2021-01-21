@@ -45,8 +45,9 @@ class NavigationBarMenu2 extends React.Component {
                                     <ul className="navbar_menu">
                                         <li><Link to="/">Главная</Link></li>
                                         <li><Link to="/clients">Ларав_Клиенты </Link></li>
-                                        <li><Link to="/template">Шаблон</Link></li>
-                                        <li><a href="#">Водитель</a></li>
+                                        <li><Link to="/huki">Хуки</Link></li>
+                                        <li><Link to="/huki_redux">Хуки+Redux</Link></li>
+                                        <li><Link to="/huki_redux2">Хуки+Redux2</Link></li>
                                         <li><a href="#">Тестовые</a>
                                             <ul>
                                                 <li><Link to="/treepage_c">Деревья Custom</Link></li>

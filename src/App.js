@@ -50,6 +50,9 @@ import LarClientPage from './pages/LarClientPage';
 import TreePageC from './pages/TreePageC';
 import TreePageM from './pages/TreePageM';
 import TreePageCtrl from './pages/TreePageCtrl';
+import HookPage from './pages/HookPage';
+import HookPageRedux from './pages/HookPageRedux';
+import HookPageRedux2 from './pages/HookPageRedux2';
 
 // eslint-disable-next-line
 import { getPublic, getPrivate, getClients, getUsers, getLogout1 } from './api'
@@ -106,11 +109,17 @@ class App extends React.PureComponent {
                         <Route exact path={routes.index} key='7' component={EmptyComponent} />
 
                         <Route exact path={routes.mainContent} key='8' component={EmptyComponent} />
+                        
+                        <AuthenticatedRoute exact path={routes.clients} component={LarClientPage} key='108' auth={auth} fallback={routes.auth} />
+{/*}
                         <Route exact path={routes.clients} key='108' component={LarClientPage} />  
+ */}                        
                         <Route exact path={routes.treePageCustom} key='101' component={TreePageC} />
                         <Route exact path={routes.treePageMulti} key='102' component={TreePageM} />
                         <Route exact path={routes.treePageCtrl} key='103' component={TreePageCtrl} />
-
+                        <Route exact path={routes.huki} key='104' component={HookPage} />
+                        <Route exact path={routes.huki_redux} key='105' component={HookPageRedux} />
+                        <Route exact path={routes.huki_redux2} key='106' component={HookPageRedux2} />
 
                         <Route exact path={routes.testAPI} key='10' component={TestAPI} />
                       </Switch>

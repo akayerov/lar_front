@@ -25,7 +25,11 @@ export const routes = {
     // доп тестовые компоненты
     treePageCustom: prefix + '/treepage_c',
     treePageMulti:  prefix + '/treepage_m',
-    treePageCtrl:   prefix + '/treepage_ctrl'
+    treePageCtrl:   prefix + '/treepage_ctrl',
+    huki: prefix + '/huki',
+    huki_redux: prefix + '/huki_redux',
+    // redux оптимизирован по хуки
+    huki_redux2: prefix + '/huki_redux2',
 
 };
 

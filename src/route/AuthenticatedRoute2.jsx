@@ -12,7 +12,7 @@ const AuthenticatedRoute = ({component: Component, ...rest}) => (
 AuthenticatedRoute.propTypes = {
     auth: PropTypes.bool,
     path: PropTypes.string,
-    component: PropTypes.func,
+//    component: PropTypes.func,
     fallback: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 

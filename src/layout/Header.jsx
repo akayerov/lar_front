@@ -13,7 +13,7 @@ const Header = props => (
                     <div className="clearfix">
                         <div>
                             <h1 className="logo">
-                                <Link to="/">SkyPark - парк приключений на высоте</Link>
+                                <Link to="/">Здесь логотип приложения</Link>
                             </h1>
 
                             <ProfileBar />

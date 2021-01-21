@@ -39,10 +39,10 @@ import axios from 'axios';
 
 toastr.options = {
   "closeButton": false,
-  "debug": true,
+  "debug": false,
   "newestOnTop": false,
   "progressBar": true,
-  "positionClass": "toast-top-right",
+  "positionClass": "toast-bottom-right",
   "preventDuplicates": false,
   "onclick": null,
   "showDuration": "300",
@@ -59,6 +59,7 @@ toastr.options = {
 export let store = createStore(AppReducer, loadState(), composeWithDevTools(applyMiddleware(thunk)));
 
 
+console.log('START APP');
 console.log('store=', store);
 console.log('token=', store.getState());
 
@@ -74,26 +75,30 @@ axios.interceptors.request.use(
 
 /**  axios прерыватель interceptors ответ */ 
 axios.interceptors.response.use(response => {
-//  console.log('!!!SUCCESS!!! response interseptor');
   return response;
 }, error => {
-//  console.log('ERROR response interseptor');
+//  console.log('error =', error);
+  console.log('error status=', error.response.status);
   if (error.response.status === 401) {
-      console.log('response =', error.response);
+      console.log('response401 =', error.response);
       if( error.response.config.url == '/api/auth/logout')  {
-         console.log('clear state');
-         clearState();
         setTimeout(() => {
             window.location.pathname = '/auth';
           }, 1000);
       }
       else {   
-        window.toast.error('Ошибка авторизации');
-        setTimeout(() => {
+          window.toast.error('Ошибка авторизации');
+          clearState();
+          setTimeout(() => {
+// код работает, но что будет если обработку отдать выше?          
             window.location.pathname = '/auth';
           }, 1000);
       }  
-  }
+  } 
+  if (error.response.status === 403) {
+    console.log('response403 =', error.response);
+    window.toast.error('Недостаточно прав доступа');
+  } 
   return Promise.reject(error)
 })
 
