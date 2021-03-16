@@ -6,7 +6,8 @@ import { getLogout1, getClients } from '../../api';
 // 2020-12-17 сохранение в localstorage
 import { saveState } from '../../localStorage';
 import { store } from "../../index";
-
+// 2021-03-15
+import { deactivateWebSocket } from '../../rabbiitMq';
 const url = '/api/';
 
 const encodeParams = (params = {}) => {
@@ -217,7 +218,10 @@ export const logOut = () => (dispatch, getState) => {
 export const logout1 = (token) => (dispatch, getState) => {
     console.log('token=', token);
     getLogout1(token).then((res) => {
+        // отписаться от Rabbit
+        deactivateWebSocket()
         console.log("logout1 успешно res=", res)
+
         dispatch({
             type: actionTypes.USER_LOGOUT,
         });
@@ -653,3 +657,19 @@ export const fetchClients = ( parameter ) => dispatch => {
         .catch(error => console.log('error', error));
 };
 
+// 2021-02-09
+// Pusher Event
+export const setEvent = (data) => dispatch => {
+                console.log('setEvent Action', data);
+                dispatch({
+                    type: actionTypes.EVENT_SET,
+                    data
+                });
+            
+};
+
+// akayerov Add Socket Event
+export const addWebSocketEvent = (type, data) => ({
+    type: actionTypes.WEB_SOCKET,
+    data,
+});

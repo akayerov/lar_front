@@ -48,6 +48,7 @@ class NavigationBarMenu2 extends React.Component {
                                         <li><Link to="/huki">Хуки</Link></li>
                                         <li><Link to="/huki_redux">Хуки+Redux</Link></li>
                                         <li><Link to="/huki_redux2">Хуки+Redux2</Link></li>
+                                        <li><Link to="/websocket">WebSocket</Link></li>
                                         <li><a href="#">Тестовые</a>
                                             <ul>
                                                 <li><Link to="/treepage_c">Деревья Custom</Link></li>
@@ -58,55 +59,11 @@ class NavigationBarMenu2 extends React.Component {
                                                 <li><a href="#">Перевозки</a></li>
                                             </ul>
                                         </li>
-{/*
-                                        <li onMouseOver={() => this.onChangePopup(true)}
-                                            onMouseOut={() => this.onChangePopup(false)}
-                                        >
-                                            <a href="#">Отчеты2</a>
-                                        </li>
-*/}                                        
-                                        <li onClick = {() => this.onChangeToogle()}>
-                                            <div>
-                                              <a href="#">Отчеты2</a>
-                                                {
-                                                    this.props.user && this.state.popup && (
-                                                        <div style={{
-                                                            position: "absolute",
-                                                            left: '20px',
-                                                            top: '20px',
-                                                            width: '300px',
-                                                            height: '300px',
-                                                            backgroundColor: 'blue',
-                                                            zIndex: '21'
-                                                        }}
-                                                        >
-                                                            <span>Укажите примечание</span>
-                                                        </div>
-                                                    )
-                                                }
-                                            </div>  
-                                        </li>
                                         {this.props.user.is_admin && <li><Link to="/testapi">Администратор</Link></li>}
                                         <li><a href="#">О нас</a></li>
                                     </ul>
                                 </div>
                             </div>
-                        )
-                    }
-                    {
-                        this.props.user && this.state.popup && (
-                            <div style={{
-                                position:"absolute",
-                                left:'500px',
-                                top: '200px',
-                                width: '300px',
-                                height:'300px',
-                                backgroundColor:'green',
-                                zIndex:15
-                          }}
-                            >
-                                <span>Укажите примечание</span>
-                           </div>
                         )
                     }
             </div>

@@ -2,8 +2,11 @@ export const loadState = () => {
     try {
         const serializedState = localStorage.getItem('admin-state');
         if (serializedState === null) throw new Error();
-
-        return JSON.parse(serializedState);
+        /* надо очистить состояние websocket - ник чему его старое значение */
+        let state = JSON.parse(serializedState);
+        state.websocket = {}
+//        return JSON.parse(serializedState);
+        return state;
     } catch (e) {
         return undefined;
     }

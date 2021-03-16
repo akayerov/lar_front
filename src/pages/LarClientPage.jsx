@@ -24,10 +24,11 @@ class GridPage extends React.Component {
 
     }
 
+ // с использованием async/await   
     async loadClients() {
         console.log('load Laravel clients');
         const dateStart = new Date();
-/*
+/* Рабочий вариант с promise
         getClients().then((data=> {
             console.log('getclients=', data, ((new Date())-dateStart) / 1000);
             this.setState({clients: data});
@@ -44,7 +45,7 @@ class GridPage extends React.Component {
             this.setState({ clients: data });
             
         } catch (error) {
-            
+            window.toast.error(error);
             console.log('LarClientPage Error load clients');
             console.log(error.response);
             this.setState({ clients: [] });

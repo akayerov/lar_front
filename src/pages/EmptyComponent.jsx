@@ -4,7 +4,7 @@ import ContentTitle from '../layout/ContentTitle';
 import {MediumHourGlass} from '../elements/Loaders';
 import debounce from 'lodash/debounce';
 
-import { getSpringClients } from '../api/spring'
+import { getSpringClients, getSpringdataJson, createLongTask } from '../api/spring'
 
 import { Button } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
@@ -54,6 +54,34 @@ class EmptyComponent extends React.Component {
             clients: []
         }
         this.loadClients = this.loadClients.bind(this);
+        this.getDataJson = this.getDataJson.bind(this);
+        this.getCreateLongTask = this.getCreateLongTask.bind(this);
+    }
+
+    getCreateLongTask() {
+        console.log('create long task');
+        createLongTask().then((data => {
+            console.log('create long task result=', data);
+
+        }))
+
+    }
+
+    getDataJson() {
+        console.log('get Data Json Objects');
+        getSpringdataJson().then((data => {
+            console.log('get Data Json Objects result=', data);
+            // const results = JSON.parse(data.result);
+            const results = data.result;
+            console.log('result=', results);
+            results.forEach(element => {
+                console.log('element=', element);
+                const date1 = new Date(element.createdDate);
+                console.log('date =', element.createdDate);
+                console.log('date1 =', date1);
+            });            
+
+        }))
     }
 
     loadClients() {
@@ -78,7 +106,8 @@ class EmptyComponent extends React.Component {
                     <DataGrid rows={this.state.clients} columns={columns1} pageSize={5} checkboxSelection />
                 </div>
                 <Button color="primary">button 1</Button>
-                <Button variant="contained" color="primary">button 2</Button>
+                <Button variant="contained" color="primary" onClick={this.getCreateLongTask}>Create Task</Button>
+                <Button variant="contained" color="primary" onClick={this.getDataJson}>Get RES Task Json</Button>
                 </div>
             </div>
         );

@@ -29,6 +29,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import throttle from 'lodash/throttle';
 import thunk from 'redux-thunk';
 import AppReducer from './redux/reducers';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 import { loadState, clearState } from './localStorage';
 import App from './App';
@@ -36,6 +38,13 @@ import ModalManager from './ModalManager';
 
 import toastr from 'toastr';
 import axios from 'axios';
+////////////WEB SOCKET///////////////////////////////////////////////////////////////////
+// 2021-02-08 Laravel Pusher
+import Echo from "laravel-echo"
+import Pusher from "pusher-js"
+import { setEvent } from './redux/actions';
+import rabbitMq from './rabbiitMq';
+
 
 toastr.options = {
   "closeButton": false,
@@ -55,13 +64,19 @@ toastr.options = {
   "hideMethod": "fadeOut"
 }
  window.toast = toastr;
- 
+
+
 export let store = createStore(AppReducer, loadState(), composeWithDevTools(applyMiddleware(thunk)));
 
 
 console.log('START APP');
 console.log('store=', store);
 console.log('token=', store.getState());
+// 2021-03-15
+
+// перенос в APP только для идентифицировангного пользователя включается
+//rabbitMq( store );
+
 
 /**  axios прерыватель interceptors запрос */ 
 axios.interceptors.request.use(
@@ -82,9 +97,13 @@ axios.interceptors.response.use(response => {
   if (error.response.status === 401) {
       console.log('response401 =', error.response);
       if( error.response.config.url == '/api/auth/logout')  {
+        clearState();
+        return error;
+/*
         setTimeout(() => {
             window.location.pathname = '/auth';
           }, 1000);
+*/
       }
       else {   
           window.toast.error('Ошибка авторизации');

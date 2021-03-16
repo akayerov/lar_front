@@ -45,3 +45,9 @@ export const closeModal = 'close-modal';
 ///////////////////////////////////////////////////////////////////////////////
 // Client
 export const CLIENT_UPDATE = 'client-update';
+// 2021-02-09
+export const EVENT_SET = 'event-set';
+
+// 2021-03015 WebSocket
+export const WEB_SOCKET = 'web-socket';
+

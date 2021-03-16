@@ -245,7 +245,7 @@ body, html {
 /* Animation classes */
 
 .fade {
-    /* opacity: 1; */
+    opacity: 1;
     transition: .2s;
     /*transition-delay: ;*/
 }
@@ -563,107 +563,4 @@ body, html {
     transform: translate(-50%, -50%);
     text-align: center;
     background-image: url('../img/initial-loader.svg');
-}
-
-/* 2020-06-29 из admin */
-.content.content-100 {
-    position: absolute;
-    width: 100%;
-    transition: opacity .3s;
-}
-
-.content.content-100.fade-appear {
-    transition: opacity .75s;
-}
-
-
-.content.content-100 {
-    overflow: hidden;
-}
-
-/** Plus form **/
-
-.circle-buttons {
-    perspective: 500px;
-}
-
-.ticket-table .header-table .column span {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.ticket-table .row.header-table {
-    background: #efeff5;
-    z-index: 1;
-    cursor: default;
-}
-
-.ticket-table {
-    min-height: 65vh;
-}
-
-.ticket-table.no-min-height, .ticket-table.directory-table {
-    min-height: 0;
-}
-
-.ticket-table .rows-container {
-    /*max-height: 73vh;*/
-    position: absolute;
-    width: 100%;
-}
-
-.ticket-table .row {
-    position: relative;
-    display: block;
-    /*max-height: 67px;*/
-    background: #fff;
-    cursor: pointer;
-    /*transition: all 0.2s;*/
-}
-
-.ticket-table .column {
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
-.ticket-table .column.small {
-    min-width: 60px;
-    max-width: 60px;
-}
-
-.ticket-table .column.smallPlus {
-    min-width: 80px;
-    max-width: 80px;
-}
-
-.ticket-table .column.medium {
-    min-width: 110px;
-    max-width: 110px;
-}
-
-.ticket-table .column.mediumPlus {
-    min-width: 130px;
-    max-width: 130px;
-}
-.ticket-table .column.large {
-    min-width: 150px;
-    max-width: 150px;
-}
-
-.ticket-table .column.largePlus {
-    min-width: 170px;
-    max-width: 170px;
-}
-
-.ticket-table .column.xl {
-    min-width: 200px;
-    max-width: 200px;
-}
-
-.ticket-table .column.xxl {
-    min-width: 284px;
-    max-width: 284px;
-    white-space: nowrap;
 }

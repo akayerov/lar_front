@@ -7,7 +7,7 @@ const Warning = props => (
         <div className="one-col row-332">
             <div className="row">
                 <p className="warning-message">
-                    {props.data.message}
+ {/*                {props.data.message}  */ }
                 </p>
             </div>
         </div>

@@ -11,7 +11,10 @@ module.exports = function(app) {
   app.use(
     '/api2',
     createProxyMiddleware({
-      target: 'http://localhost:8080',
+//  в номальном развернутом в докере режиме      
+     target: 'http://localhost:8080',
+//  в отладочном режиме Idea
+//      target: 'http://localhost:8091',
       changeOrigin: true,
     })
   );

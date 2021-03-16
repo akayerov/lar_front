@@ -18,7 +18,7 @@ function App() {
 export default App;
 */
 import './css/main.css';
-//import './css/react.css';
+import './css/react.css';
 
 import React from 'react';
 import { connect } from 'react-redux';
@@ -53,10 +53,18 @@ import TreePageCtrl from './pages/TreePageCtrl';
 import HookPage from './pages/HookPage';
 import HookPageRedux from './pages/HookPageRedux';
 import HookPageRedux2 from './pages/HookPageRedux2';
+import WebSocketPage from './pages/WebSockerPage';
+import rabbitMq from './rabbiitMq';
 
 // eslint-disable-next-line
 import { getPublic, getPrivate, getClients, getUsers, getLogout1 } from './api'
 import { logout1 } from './redux/actions';
+
+
+import Echo from "laravel-echo"
+import Pusher from "pusher-js"
+import {setEvent} from "./redux/actions"
+
 
 
 class App extends React.PureComponent {
@@ -67,7 +75,6 @@ class App extends React.PureComponent {
   }
 
   componentDidMount() {
-    //this.props.fetchUser2();
   }
 
   componentDidUpdate() {
@@ -81,6 +88,8 @@ class App extends React.PureComponent {
     //        const pending = this.state.pending || this.props.pending;
     //        console.log(this.props.pending);
     console.log('App render');
+    if(auth)
+      rabbitMq(this.props.user);
 
     return (
       <BrowserRouter>
@@ -120,6 +129,7 @@ class App extends React.PureComponent {
                         <Route exact path={routes.huki} key='104' component={HookPage} />
                         <Route exact path={routes.huki_redux} key='105' component={HookPageRedux} />
                         <Route exact path={routes.huki_redux2} key='106' component={HookPageRedux2} />
+                        <Route exact path={routes.websocket} key='107' component={WebSocketPage} />
 
                         <Route exact path={routes.testAPI} key='10' component={TestAPI} />
                       </Switch>
@@ -136,6 +146,7 @@ class App extends React.PureComponent {
 
 export default connect(
   state => ({
+    token: state.token,
     user: state.user,
     pending: state.pending.init !== undefined ? state.pending.init : true,
   }),
@@ -143,5 +154,6 @@ export default connect(
     fetchUser: () => dispatch(fetchUserData(true)),
     fetchUser2: () => dispatch(fetchUserData2(true)),
     makeLogout: (token) => dispatch(logout1(token)),
+    setEventToStore: (data) => dispatch(setEvent(data)),
   })
 )(App);

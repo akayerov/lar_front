@@ -1,33 +1,34 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {updateModal} from './redux/actions';
+import { updateModal, closeModal } from './redux/actions';
 
 // modals
 /*
 import Template from './modals/Template';
 import DeleteItem from './modals/DeleteItem';
-import Warning from './modals/Warning';
 import EditDirectory from './modals/EditDirectory';
 import TemlateReport from './modals/TemlateReport';
 import MultiEditTicket from './modals/MultiEditTicket';
 */
-// v1 react-transition-group устарела React ругается на нее
-//import {CSSTransitionGroup} from 'react-transition-group';
-// v4.0.1
-//https://reactcommunity.org/react-transition-group/transition-group
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Warning from './modals/Warning';
+import EmptyView from './modals/EmptyView';
 
-import ModalOverlay from './modals/ModalOverlay';
+import { useSpring, animated } from 'react-spring'
+
+//import ModalOverlay from './modals/ModalOverlay';
+import ModalOverlay from './modals/ModalOverlayHook';
+
+import map from 'lodash/map';
+
 
 export const modalTypes = {
-/*
-    template: Template,
-    deleteItem: DeleteItem,
+//    template: Template,
+//    deleteItem: DeleteItem,
     warning: Warning,
-    editDirectory: EditDirectory,
-    temlateReport: TemlateReport,
-    multiEditTicket: MultiEditTicket
-*/    
+    emptyView: EmptyView,
+//    editDirectory: EditDirectory,
+//    temlateReport: TemlateReport,
+//    multiEditTicket: MultiEditTicket
 };
 
 const getModal = type => {
@@ -35,41 +36,36 @@ const getModal = type => {
     return null;
 };
 
-const ModalManager = ({type, ...props}) => {
-    const Modal = getModal(type);
+const ModalManager = ({ modals, ...props }) => {
+    const SpringProps = useSpring({ opacity: 1, from: { opacity: 0 } });
+
 
     return (
-/*
-        <CSSTransitionGroup transitionName="modal"
-                            transitionEnterTimeout={200}
-                            transitionLeaveTimeout={200}>
-            {Modal && <ModalOverlay close={props.close} key={1} /> }
-            {Modal && <Modal {...props} key={2} />}
-        </CSSTransitionGroup>
-*/
-        <TransitionGroup className="todo-list">
-        <CSSTransition
-                key={'trans_modal'}
-                timeout={500}
-                classNames="item">
-        <div>
-            {Modal && <ModalOverlay close={props.close} key={1} />}
-            {Modal && <Modal {...props} key={2} />}
+        <animated.div style = { SpringProps }>
+            {modals.length > 0 && <ModalOverlay close={props.close} key={1} />}
 
-        </div>
-        </CSSTransition>
 
-        </TransitionGroup>
+            {map(modals, (item, i) => {
+                const Modal = getModal(item.modalType);
+                console.log('Modal=', item.modalType );
+                return (
+                    <Modal {...props} {...item} key={i} />
+                )
+            }
 
+            )}
+         </animated.div>   
     );
 };
+
 
 export default connect(
     state => ({
         type: state.modal.type,
         data: state.modal.data,
+        modals: state.modals,
     }),
     dispatch => ({
-        close: () => dispatch(updateModal(null, null))
+        close: () => dispatch(closeModal(null, null))
     })
 )(ModalManager);

@@ -12,3 +12,20 @@ export const getSpringClients = () => axios.get(url('public/clients'), {
     return response.data;
 });
 
+
+//  Test JSON сознания задачи и запуска в отдельном потоке выполнения
+export const createLongTask = () => axios.get(url('public/testjson'), {
+    params: {},
+}).then(response => {
+    return response.data;
+});
+
+
+
+//  Результат длительной операции из JSON поля result базы данных
+export const getSpringdataJson = () => axios.get(url('public/testresult/42'), {
+    params: {},
+}).then(response => {
+    return response.data;
+});
+

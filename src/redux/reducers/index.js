@@ -115,8 +115,6 @@ const modal = (state = {}, action) => {
 
 const modals = (state = {}, action) => {
     if (action.type == actionTypes.addModal) {
-        console.log(state, action);
-
         if(state && state.length > 0) {
             return [...state, action]
         }
@@ -176,6 +174,34 @@ const clients = (list = [], { data, type }) => {
     return list;
 };
 
+/* Запись события в хранилище */
+
+const events = (list = {}, { type, data }) => {
+    if (type === actionTypes.EVENT_SET) {
+        console.log('reducer EVENT_SET', data);
+        return data
+    }
+    return list;
+};
+
+
+const websocket = (status = {}, action) => {
+    if (action.type === actionTypes.WEB_SOCKET) {
+        const data = action.data;
+        const key = data.key;
+        const value = data.value;
+/*
+        console.log('key = ', key);
+        console.log('value = ', value);
+*/
+        return {
+            ...status,
+            [key]: value,
+        };
+    }
+    return status;
+};
+
 
 
 const rootReducer = combineReducers({
@@ -191,7 +217,11 @@ const rootReducer = combineReducers({
     reservationTimers,
     modals,
 //
-   clients    
+   clients,  
+// 2021-02-09
+   events,
+   websocket
+
 
 });
 

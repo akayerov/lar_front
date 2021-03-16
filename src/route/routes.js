@@ -18,8 +18,6 @@ export const routes = {
     clients: prefix + '/clients',
     template: prefix + '/template',
 
-//   клиенты laravel
-    clients: prefix + '/clients',
 
 
     // доп тестовые компоненты
@@ -30,6 +28,7 @@ export const routes = {
     huki_redux: prefix + '/huki_redux',
     // redux оптимизирован по хуки
     huki_redux2: prefix + '/huki_redux2',
+    websocket: prefix + '/websocket',
 
 };
 

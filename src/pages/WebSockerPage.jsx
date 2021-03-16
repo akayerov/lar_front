@@ -14,7 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { getMe, setNewPassword } from '../api';
 
-// модальные окнв
+// модальные окна
 import { addModal, closeModal } from '../redux/actions';
 
 
@@ -25,15 +25,15 @@ const columns = [
     { field: 'city.name', headerName: 'Город', width: 130 },
 ];
 
-const HookPage =  (props) => {
+const WebSocketPage =  (props) => {
 
 
     const [status, setStatus] = useState('idle');
     const [query, setQuery] = useState('1');
 // новое от redux
-    const clients = useSelector(state => state.clients);
+    const websocket = useSelector(state => state.websocket);
     const dispatch = useDispatch();
-
+/*
     useEffect(() => {
         if (!query) return;
 // новое от redux
@@ -45,35 +45,26 @@ const HookPage =  (props) => {
        console.log('Reload data...');
         dispatch(fetchClients({}));
     }
-    const changePassword = () => {
-        console.log('Изменить пароль...');
-        setNewPassword("akayerov@gmail.com", "987654321");
-    }
 
-    const whoami = () => {
-        getMe().then( data => {
-            console.log('res=', data);
-        });
-    }
+ */
     const showModal = () => {
         console.log('Show modal function');
         dispatch(addModal('emptyView', { activity: null }));
     }
-
+    console.log('WebsocketPage websocket=', websocket);
+    const message = (websocket) ? websocket.message: '';
     return (
         <div className="content content-924">
             <ContentTitle className="booking-title">
-                Grid Table Material UI 2 Хуки Redux2
+                Web Socket Page
             </ContentTitle>
+            <Button color="primary" onClick={()=>{}}>Кнопка 1</Button>
+            <Button color="primary" onClick={()=>{}}>Кнопка 2</Button>
             <div style={{ height: '70vh' }}>
-                <DataGrid rows={clients} columns={columns} pageSize={5} checkboxSelection />
+                {message}
             </div>
-            <Button color="primary" onClick={reload}>Обновить</Button>
-            <Button color="primary" onClick={changePassword}>Изм Пароль</Button>
-            <Button color="primary" onClick={whoami}>Кто я?</Button>
-            <Button color="primary" onClick={showModal}>Диалог</Button>
         </div>
     );
 }
-export default HookPage;
+export default WebSocketPage;
 
