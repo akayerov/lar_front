@@ -66,6 +66,16 @@ export const setNewPassword = ( email, password ) => axios.post(
     return response.data;
 });
 
+export const genEvent = (message) => axios.post(url('event/genEvent'), {
+    message
+}).then(response => {
+    return response.data;
+});
+export const genEvent2 = (message) => axios.post(url('event/genEvent2'), {
+    message
+}).then(response => {
+    return response.data;
+});
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -75,6 +85,8 @@ export const getTestHello = () => axios.get(url('hello'), {
 }).then(response => {
     return response.data;
 });
+
+
 
 
 
