@@ -77,6 +77,11 @@ export const genEvent2 = (message) => axios.post(url('event/genEvent2'), {
     return response.data;
 });
 
+export const setBindExchange = (queue,exchange) => axios.post(url('event/setBindExchange'), {
+    queue,exchange
+}).then(response => {
+    return response.data;
+});
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // Тестовый запрос
